@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:Laba9">
+    <v:String x:Key="m_Paste">Вставить</v:String>
+    <v:String x:Key="m_Copy">Копировать</v:String>
+    <v:String x:Key="m_File">Файл</v:String>
+    <v:String x:Key="m_Edit">Редактировать</v:String>
+    <v:String x:Key="m_Cut">Вырезать</v:String>
+    <v:String x:Key="m_Close">Закрыть</v:String>
+    <v:String x:Key="m_New">Новый</v:String>
+    <v:String x:Key="m_Save">Сохранить</v:String>
+    <v:String x:Key="m_Open">Открыть</v:String>
+    <v:String x:Key="m_Font">Шрифт</v:String>
+    <v:String x:Key="m_Color">Цвет</v:String>
+    <v:String x:Key="m_Size">Размер</v:String>
+    <v:String x:Key="m_NowSize">Количество символов</v:String>
+    <v:String x:Key="m_FontStyle">Стиль шрифта</v:String>
+    <v:String x:Key="m_Delete">Удалить</v:String>
+
+
+</ResourceDictionary>

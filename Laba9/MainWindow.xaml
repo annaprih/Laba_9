@@ -1,0 +1,166 @@
+﻿<Window x:Class="Laba9.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Laba9"
+        mc:Ignorable="d"
+        Title="Laba9" Height="600" Width="800" WindowState="Maximized">
+    <Window.Resources>
+        <Style x:Key="MyStyleMenu">
+            <Setter Property="Control.VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Control.HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Control.HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Control.Background" Value="DimGray"/>
+            <Setter Property="Control.Foreground" Value="Aqua"/>
+        </Style>
+        <Style x:Key="MyStyle">
+            <Setter Property="Control.VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Control.HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Control.Background" Value="DimGray"/>
+            <Setter Property="Control.Foreground" Value="Aqua"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <Grid Row="0" Style="{StaticResource ResourceKey=MyStyle}">
+            <Menu x:Name="Menu">
+                <MenuItem Header="{StaticResource m_File}" MinWidth="30" Style="{StaticResource ResourceKey=MyStyleMenu}">
+
+                    <MenuItem Header="{StaticResource m_New}" Command="ApplicationCommands.New">
+                        <MenuItem.CommandBindings>
+                            <CommandBinding Command="New" Executed="New_Click" />
+                        </MenuItem.CommandBindings>
+                    </MenuItem>
+                    <MenuItem Header="{StaticResource m_Save}" Command="ApplicationCommands.Save">
+                        <MenuItem.CommandBindings>
+                            <CommandBinding Command="Save" Executed="Save_Click"/>
+                        </MenuItem.CommandBindings>
+                    </MenuItem>
+                    <MenuItem Header="{StaticResource m_Open}" Command="ApplicationCommands.Open">
+                        <MenuItem.CommandBindings>
+                            <CommandBinding Command="Open" Executed="Open_Click"/>
+                        </MenuItem.CommandBindings>
+                    </MenuItem>
+                </MenuItem>
+
+
+                <MenuItem Header="{StaticResource m_Edit}" MinWidth="30" Style="{StaticResource ResourceKey=MyStyleMenu}">
+                    <MenuItem Header="{StaticResource m_Copy}" CommandTarget="{Binding ElementName=richTextBox}" Command="Copy"/>
+                    <MenuItem Header="{StaticResource m_Paste}" CommandTarget="{Binding ElementName=richTextBox}" Command="Paste"/>
+                    <MenuItem Header="{StaticResource m_Cut}" CommandTarget="{Binding ElementName=richTextBox}" Command="Cut"/>
+                </MenuItem>
+
+                <MenuItem Header="{StaticResource m_Font}" MinWidth="30" Style="{StaticResource ResourceKey=MyStyleMenu}" Click="Font_Click">
+                </MenuItem>
+
+                <MenuItem Header="{StaticResource m_Color}" Style="{StaticResource ResourceKey=MyStyleMenu}" Click="Color_Click" >
+                </MenuItem>
+
+                <ComboBox x:Name="Style" MinWidth="150" Style="{StaticResource ResourceKey=MyStyleMenu}" >
+                    <ComboBox.ItemContainerStyle>
+                        <Style>
+                            <Setter Property="ListBoxItem.Background" Value="DimGray"/>
+                            <Setter Property="ListBoxItem.Foreground" Value="Aqua"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+
+                <Slider x:Name="Size" MinWidth="200" Minimum="1" Maximum="50"/>
+                <TextBlock x:Name="SizeTextBlock" MinWidth="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+                <ToggleButton Content="I" FontStyle="Italic" MinWidth="30" Style="{StaticResource ResourceKey=MyStyle}" CommandTarget="{Binding ElementName=richTextBox}" Command="EditingCommands.ToggleItalic"/>
+                <ToggleButton Content="B" FontWeight="Bold" MinWidth="30" Style="{StaticResource ResourceKey=MyStyle}" CommandTarget="{Binding ElementName=richTextBox}" Command="EditingCommands.ToggleBold"/>
+                <ToggleButton MinWidth="30" Style="{StaticResource ResourceKey=MyStyle}" CommandTarget="{Binding ElementName=richTextBox}" Command="EditingCommands.ToggleUnderline">
+                    <TextBlock TextDecorations="Underline">U</TextBlock>
+                </ToggleButton>
+
+            </Menu>
+        </Grid>
+        <Grid Row="1" Style="{StaticResource ResourceKey=MyStyle}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="0.2*"/>
+            </Grid.ColumnDefinitions>
+
+            <ToolBar Grid.Column="0" Style="{StaticResource ResourceKey=MyStyle}">
+                <Button x:Name ="New" Content="{StaticResource m_New}" Command="ApplicationCommands.New">
+                    <Button.CommandBindings>
+                        <CommandBinding Command="New" Executed="New_Click" />
+                    </Button.CommandBindings>
+                </Button>
+                <Button  x:Name ="Save" Content="{StaticResource m_Save}" Command="ApplicationCommands.Save">
+                    <Button.CommandBindings>
+                        <CommandBinding Command="Save" Executed="Save_Click" />
+                    </Button.CommandBindings>
+                </Button>
+                <Button x:Name ="Open" Content="{StaticResource m_Open}" Command="ApplicationCommands.Open">
+                    <Button.CommandBindings>
+                        <CommandBinding Command="Open" Executed="Open_Click" />
+                    </Button.CommandBindings>
+                </Button>
+                <Button x:Name ="Copy" Content="{StaticResource m_Copy}" CommandTarget="{Binding ElementName=richTextBox}" Command="Copy"/>
+                <Button x:Name ="Paste" Content="{StaticResource m_Paste}" CommandTarget="{Binding ElementName=richTextBox}" Command="Paste"/>
+                <Button x:Name ="Cut" Content="{StaticResource m_Cut}" CommandTarget="{Binding ElementName=richTextBox}" Command="Cut"/>
+            </ToolBar>
+
+            <ToolBar Grid.Column="1" Style="{StaticResource ResourceKey=MyStyle}">
+                <ComboBox  x:Name ="StyleComboBox" MinWidth="150" Style="{DynamicResource ResourceKey=MyStyle}"/>
+            </ToolBar>
+
+            <ToolBar Grid.Column="2" Style="{StaticResource ResourceKey=MyStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.9*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Slider x:Name ="SizeSlider" Grid.Column="0" MinWidth="120" Minimum="1" Maximum="50" VerticalAlignment="Center"/>
+                    <Grid Grid.Column="1" Style="{StaticResource ResourceKey=MyStyleMenu}">
+                        <TextBlock  x:Name ="SizeText"  Style="{StaticResource ResourceKey=MyStyleMenu}"/>
+                    </Grid>
+                </Grid>
+            </ToolBar>
+
+            <ToolBar Grid.Column="3" Style="{StaticResource ResourceKey=MyStyle}">
+                <ToggleButton Content="I" FontStyle="Italic" MinWidth="30" Style="{StaticResource ResourceKey=MyStyle}" CommandTarget="{Binding ElementName=richTextBox}" Command="EditingCommands.ToggleItalic"/>
+                <ToggleButton Content="B" FontWeight="Bold" MinWidth="30" Style="{StaticResource ResourceKey=MyStyle}" CommandTarget="{Binding ElementName=richTextBox}" Command="EditingCommands.ToggleBold"/>
+                <ToggleButton MinWidth="30" Style="{StaticResource ResourceKey=MyStyle}" CommandTarget="{Binding ElementName=richTextBox}" Command="EditingCommands.ToggleUnderline">
+                    <TextBlock TextDecorations="Underline">U</TextBlock>
+                </ToggleButton>
+            </ToolBar>
+        </Grid>
+        <Grid Row="2" Style="{StaticResource ResourceKey=MyStyle}">
+            <RichTextBox x:Name="richTextBox" Height ="Auto" AllowDrop="True" SpellCheck.IsEnabled="True" AcceptsTab="True" TextChanged="AmountSymbols" Background="Silver" Foreground="Black">
+                <RichTextBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem x:Name="DeleteContextCont" Header="{StaticResource m_Delete}" Command="Backspace"/>
+                        <MenuItem x:Name="CopyContextCont" Header="{StaticResource m_Copy}" Command="Copy"/>
+                        <MenuItem x:Name="PasteContextCont" Header="{StaticResource m_Paste}" Command="Paste"/>
+                        <MenuItem x:Name="CutContextCont" Header="{StaticResource m_Cut}" Command="Cut"/>
+                        <MenuItem x:Name="CloseContextCont" Header="{StaticResource m_Close}" Command="ApplicationCommands.Close">
+                            <MenuItem.CommandBindings>
+                                <CommandBinding Command="Close" Executed="Close_Click" />
+                            </MenuItem.CommandBindings>
+                        </MenuItem>
+                    </ContextMenu>
+                </RichTextBox.ContextMenu>
+            </RichTextBox>
+
+        </Grid>
+        <Grid Row="3" Style="{StaticResource ResourceKey=MyStyle}">
+            <StatusBar x:Name="StatusBar">
+                <StatusBarItem Content="{StaticResource m_NowSize}"/>
+                <StatusBarItem x:Name="AmountOfSymbols"/>
+               </StatusBar>
+        </Grid>
+
+    </Grid>
+</Window>
